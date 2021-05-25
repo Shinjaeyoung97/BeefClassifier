@@ -46,7 +46,7 @@ public class PostDetailActivity extends AppCompatActivity {
 
 
 
-        ref = FirebaseDatabase.getInstance().getReference("Board").child(Postkey);
+        ref = FirebaseDatabase.getInstance().getReference("Board").child("post").child(Postkey);
         img1 = findViewById( R.id.Detail_img1);
         img2 = findViewById( R.id.Detail_img2);
         img3 = findViewById( R.id.Detail_img3);

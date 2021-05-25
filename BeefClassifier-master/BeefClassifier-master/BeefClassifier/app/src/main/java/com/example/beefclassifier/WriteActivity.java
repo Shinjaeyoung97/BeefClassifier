@@ -181,7 +181,9 @@ public class WriteActivity extends AppCompatActivity {
 
                 }
                 String key=ref.push().getKey();
-                ref.child(key).setValue(post);
+                ref.child("post").child(key).setValue(post);
+
+                ref.child("user-post").child(user.getUid()).child(key).setValue(post);
                 finish();
             }
 

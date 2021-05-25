@@ -16,16 +16,18 @@
             android:id="@+id/RecylerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="50dp"
-            tools:listitem="@layout/item"
-            />
+            android:layout_marginTop="100dp"
+            app:layout_constraintTop_toBottomOf="@+id/Line"
+            tools:layout_editor_absoluteX="0dp"
+            tools:listitem="@layout/item" />
 
         <ImageButton
             android:id="@+id/WriteButton"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginEnd="48dp"
-            android:layout_marginBottom="88dp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginBottom="36dp"
+            android:background="#C86565"
             android:scaleType="fitCenter"
             android:src="@drawable/write"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -47,8 +49,33 @@
             android:id="@+id/Line"
             android:layout_width="match_parent"
             android:layout_height="2dp"
+            android:layout_marginTop="8dp"
             android:background="#C86565"
             app:layout_constraintTop_toBottomOf="@+id/BorderTitle"
-            tools:layout_editor_absoluteX="0dp" />
+            tools:layout_editor_absoluteX="16dp" />
+
+        <EditText
+            android:id="@+id/Searchedit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="#C86565"
+            app:layout_constraintEnd_toEndOf="@+id/Line"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Line" />
+
+        <ImageButton
+            android:id="@+id/SearchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:background="#C86565"
+            android:src="@android:drawable/ic_menu_search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/Searchedit"
+            app:layout_constraintTop_toBottomOf="@+id/Line" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

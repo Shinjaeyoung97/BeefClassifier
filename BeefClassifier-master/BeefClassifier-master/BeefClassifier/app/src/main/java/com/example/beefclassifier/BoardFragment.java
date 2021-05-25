@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,7 +29,12 @@ import com.google.firebase.database.Query;
 public class BoardFragment extends Fragment {
     private RecyclerView recyclerView;
     private FirebaseRecyclerAdapter<Post, PostViewHolder> adapter;
-    private ImageButton WriteBtn;
+    private ImageButton WriteBtn,SearchBtn;
+    private EditText SearchEdit;
+    private  Query query;
+    private  FirebaseRecyclerOptions<Post> options;
+    private FirebaseDatabase database ;
+    private  DatabaseReference ref;
     public BoardFragment() {
         // Required empty public constructor
     }
@@ -42,11 +48,17 @@ public class BoardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        System.out.println(1);
         View view = inflater.inflate(R.layout.fragment_board, container, false);
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("Board");
-        Query query = ref.limitToFirst(100);
-        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>() //어떤데이터를 어디서갖고올거며 어떠한 형태의 데이터클래스 결과를 반환할거냐 옵션을 정의한다.
+        SearchBtn = (ImageButton)view.findViewById(R.id.SearchButton);
+        SearchEdit = view.findViewById(R.id.Searchedit);
+
+
+
+      database = FirebaseDatabase.getInstance();
+       ref = database.getReference("Board").child("post");
+        query = ref.limitToFirst(100);
+        options = new FirebaseRecyclerOptions.Builder<Post>() //어떤데이터를 어디서갖고올거며 어떠한 형태의 데이터클래스 결과를 반환할거냐 옵션을 정의한다.
                 .setQuery(query, Post.class)
                 .build();
         recyclerView=view.findViewById(R.id.RecylerView);
@@ -60,6 +72,7 @@ public class BoardFragment extends Fragment {
 
                 // Set click listener for the whole post view
                 final String postKey = postRef.getKey();
+
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -100,6 +113,24 @@ public class BoardFragment extends Fragment {
             }
         });
 
+        SearchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String text = SearchEdit.getText().toString();
+                System.out.println(text);
+                query = ref.orderByChild("title").startAt(text).endAt(text+"\uf8ff").limitToFirst(100) ;
+                options = new FirebaseRecyclerOptions.Builder<Post>() //어떤데이터를 어디서갖고올거며 어떠한 형태의 데이터클래스 결과를 반환할거냐 옵션을 정의한다.
+                        .setQuery(query, Post.class)
+                        .build();
+
+
+                adapter.updateOptions(options);
+                adapter.notifyDataSetChanged();
+            }
+
+        });
+
         return view;
     }
     @Override
@@ -108,13 +139,25 @@ public class BoardFragment extends Fragment {
         if (adapter != null) {
             adapter.startListening();
         }
-    }
 
+
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        query = ref.limitToFirst(100);
+        options = new FirebaseRecyclerOptions.Builder<Post>() //어떤데이터를 어디서갖고올거며 어떠한 형태의 데이터클래스 결과를 반환할거냐 옵션을 정의한다.
+                .setQuery(query, Post.class)
+                .build();
+        adapter.updateOptions(options);
+        adapter.notifyDataSetChanged();
+    }
     @Override
     public void onStop() {
         super.onStop();
         if (adapter != null) {
             adapter.stopListening();
         }
+        SearchEdit.setText("");
     }
 }
