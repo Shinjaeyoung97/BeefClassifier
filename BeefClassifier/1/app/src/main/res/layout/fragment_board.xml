@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="#FF6769"
+
+    android:backgroundTintMode="add"
+    tools:context=".BoardFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FF6769"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true">
+
+                    <SearchView
+                        android:id="@+id/BoardsearchView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="15"
+                        android:background="#FFFFFF"
+                        android:backgroundTint="#FF6769"
+                        android:iconifiedByDefault="false"
+                        android:queryHint="검색어를 입력하세요" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/RecylerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:listitem="@layout/item">
+
+                </androidx.recyclerview.widget.RecyclerView>
+            </LinearLayout>
+        </ScrollView>
+
+        <ImageButton
+            android:id="@+id/WriteButton"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginBottom="36dp"
+            android:background="#C86565"
+            android:scaleType="fitCenter"
+            android:src="@drawable/write"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

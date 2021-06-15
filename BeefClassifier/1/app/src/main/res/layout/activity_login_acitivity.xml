@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".LoginActivity">
+
+    <EditText
+        android:id="@+id/nameedt"
+        android:layout_width="222dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="312dp"
+        android:background="@drawable/round"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textColor="#FF6769"
+        android:textColorHint="#FF6769"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registertoolbar" />
+
+    <EditText
+        android:id="@+id/Passwordedt"
+        android:layout_width="220dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColor="#FF6769"
+        android:textColorHint="#FF6769"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameedt" />
+
+    <Button
+        android:id="@+id/LoginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:background="#00FFFFFF"
+        android:text="Login"
+        android:textColor="#FF6769"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Passwordedt" />
+
+    <Button
+        android:id="@+id/SignupButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00FFFFFF"
+        android:text="Sign up"
+        android:textColor="#FF6769"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LoginButton" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/registertoolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FF6769"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-16dp">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/alfa_slab_one"
+            android:text="로 그 인  화 면"
+            android:textColor = "#ffffffff"
+            android:textAllCaps="false"
+            android:textDirection="firstStrong"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="272dp"
+            tools:layout_editor_absoluteY="22dp" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="220dp"
+        android:layout_height="142dp"
+        app:layout_constraintBottom_toTopOf="@+id/nameedt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registertoolbar"
+        app:layout_constraintVertical_bias="0.57"
+        app:srcCompat="@drawable/login" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
