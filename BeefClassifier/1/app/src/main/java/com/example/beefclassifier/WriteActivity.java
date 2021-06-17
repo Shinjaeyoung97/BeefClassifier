@@ -235,8 +235,6 @@ public class WriteActivity extends AppCompatActivity {
                             imageDeleteBtns[i].bringToFront();
                         }
                     }
-                    if(Bitmaps.size()>=1)
-                        attachtext.setText(Bitmaps.size()+"/3");
 
                 }
 
