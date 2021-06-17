@@ -20,10 +20,11 @@ import static com.example.beefclassifier.ImageUtils.byteArrayToBitmap;
 
 public class ResultActivity extends AppCompatActivity {
     private ImageView resultimgView;
-    private TextView resultTitleView,resultconfView;
+    private TextView resultTitleView,resultconfView, resultgradeView;
     private Bitmap resultimg;
     private String resultTitle;
     private float resultConf;
+    private String resultgrade;
     private double resultFat;
     private Toolbar toolbar;
     private Button reloadBtn;
@@ -40,6 +41,7 @@ public class ResultActivity extends AppCompatActivity {
         resultimgView = findViewById(R.id.resultimg);
         resultTitleView = findViewById(R.id.resultTitle);
         resultconfView = findViewById(R.id.resultdistribution);
+        resultgradeView = findViewById(R.id.resultgradeView);
 
         Intent intent = getIntent();
 
@@ -51,10 +53,26 @@ public class ResultActivity extends AppCompatActivity {
         Matrix matrix = new Matrix();
         matrix.preRotate(90,0,0);
 
+
+
+        if(resultFat * 100 > 17)
+            resultgrade = "1++";
+        else if(resultFat * 100 < 17 && resultFat * 100 >= 12)
+            resultgrade = "1+";
+        else if(resultFat * 100 < 12 && resultFat * 100 >= 9)
+            resultgrade = "1";
+        else if (resultFat * 100 < 9 && resultFat * 100 >= 5)
+            resultgrade = "2";
+        else if(resultFat  * 100 < 5)
+            resultgrade = "3";
+
+
+
         resultimg = Bitmap.createBitmap(resultimg,0,0,resultimg.getWidth(),resultimg.getHeight(),matrix,false);
         resultimgView.setImageBitmap(resultimg);
         resultTitleView.setText(resultTitle);
-        resultconfView.setText(resultConf+" , 마블링 정도 :"+resultFat);
+        resultconfView.setText(String.format("%.1f", resultFat*100) + "%");
+        resultgradeView.setText(resultgrade + "등급");
 
         resultTitleView.bringToFront();
         resultconfView.bringToFront();
